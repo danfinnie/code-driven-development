@@ -1,5 +1,3 @@
 require "tester/version"
-
-module Tester
-  # Your code goes here...
-end
+require "tester/tester"
+require "tester/validation"
