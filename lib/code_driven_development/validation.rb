@@ -1,4 +1,4 @@
-module Tester
+module CodeDrivenDevelopment
   class Validation
     attr_reader :type, :field
 

@@ -1,5 +1,5 @@
-module Tester
-  class Tester
+module CodeDrivenDevelopment
+  class CodeDrivenDevelopment
     def initialize(implementation)
       @implementation = implementation
     end

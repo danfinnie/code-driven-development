@@ -1,4 +1,4 @@
-require_relative '../lib/tester'
+require_relative '../lib/code_driven_development'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

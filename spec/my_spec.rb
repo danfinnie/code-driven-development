@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tester::Tester do
+describe CodeDrivenDevelopment::CodeDrivenDevelopment do
   before do
     implementation = <<-EOT
       class Lolcat < ActiveRecord::Base
@@ -8,7 +8,7 @@ describe Tester::Tester do
       end
     EOT
 
-    @test = Tester::Tester.new(implementation).test_code
+    @test = CodeDrivenDevelopment::CodeDrivenDevelopment.new(implementation).test_code
   end
 
   it "puts the model name in the describe description" do
