@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'code_driven_development'
+puts CodeDrivenDevelopment::CodeDrivenDevelopment.new(ARGF.read).test_code.strip
