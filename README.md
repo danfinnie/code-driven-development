@@ -3,7 +3,7 @@
 Ever see a test and think, "wow, this test cares a lot about the exact abstract
 syntax tree of the code?"  CDD aims to generate tests like that.  Here's some example input:
 
-```
+``` ruby
 class Bunker < ActiveRecord::Base
   validate :password, secure: true
   validate :location, :protected => true
@@ -21,7 +21,7 @@ end
 
 And this is what CDD thinks of it:
 
-```
+``` ruby
 describe Bunker do
   it { should validate_secure_of :password }
   it { should validate_protected_of :location }
