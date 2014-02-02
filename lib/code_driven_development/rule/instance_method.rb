@@ -6,7 +6,8 @@ module CodeDrivenDevelopment
       end
 
       def to_ruby_string
-        ruleset.output << %Q(describe "##{method_name}" do")
+        ruleset.output << %Q(describe "##{method_name}" do)
+        $omgbad = method_name
         ruleset.output.indented do
           recurse(method_body)
         end
