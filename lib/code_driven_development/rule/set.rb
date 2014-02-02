@@ -1,9 +1,12 @@
 module CodeDrivenDevelopment
   module Rule
     class Set
-      def initialize(*rules, default: nil)
+      attr_reader :output
+
+      def initialize(*rules, default: nil, output: nil)
         @rules = rules
         @default_rule = default
+        @output = output
       end
 
       def to_ruby_string(code)

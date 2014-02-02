@@ -2,6 +2,7 @@ require 'ruby_parser'
 
 require "code_driven_development/version"
 require "code_driven_development/code_driven_development"
+require "code_driven_development/indented_output"
 
 require "code_driven_development/rule/abstract_rule"
 require "code_driven_development/rule/set"

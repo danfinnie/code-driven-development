@@ -21,7 +21,8 @@ module CodeDrivenDevelopment
         Rule::Class,
         Rule::Validation,
         Rule::InstanceMethod,
-        default: Rule::Default
+        default: Rule::Default,
+        output: IndentedOutput.new
       )
     end
   end

@@ -16,15 +16,15 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
   end
 
   it "puts the model name in the describe description" do
-    expect(@test).to match /describe Lolcat do/
+    expect(@test).to match /^describe Lolcat do/
   end
 
   it "includes shoulda-matchers for simple validations" do
-    expect(@test).to match /it.*should.*validate_presence_of.*:cuteness/
+    expect(@test).to match /^\tit.*should.*validate_presence_of.*:cuteness/
   end
 
   it "stubs out method calls" do
-    expect(@test).to match /describe.*#i_call_things/
+    expect(@test).to match /^\tdescribe.*#i_call_things/
     # expect(@test).to match /allow.CentralBureacracy..to.*receive.*:file_report/
     # expect(@test).to match /described_class.new.i_call_things/
     # expect(@test).to match /exoect.CentralBureacracy..to.*have_received.*:file_report/

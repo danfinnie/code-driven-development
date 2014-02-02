@@ -6,7 +6,11 @@ module CodeDrivenDevelopment
       end
 
       def to_ruby_string
-        %Q(describe "##{method_name}" do\n") + recurse(method_body) + "\nend"
+        ruleset.output << %Q(describe "##{method_name}" do")
+        ruleset.output.indented do
+          recurse(method_body)
+        end
+        ruleset.output << "end"
       end
 
       private

@@ -6,7 +6,11 @@ module CodeDrivenDevelopment
       end
 
       def to_ruby_string
-        "describe #{class_name} do\n" + recurse(class_body) + "\nend"
+        ruleset.output << "describe #{class_name} do"
+        ruleset.output.indented do
+          recurse(class_body)
+        end
+        ruleset.output << "end"
       end
 
       private

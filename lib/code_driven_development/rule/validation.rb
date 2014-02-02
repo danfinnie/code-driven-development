@@ -8,7 +8,7 @@ module CodeDrivenDevelopment
       end
 
       def to_ruby_string
-        "it { should validate_#{type}_of :#{field} }"
+        ruleset.output << "it { should validate_#{type}_of :#{field} }"
       end
 
       private
