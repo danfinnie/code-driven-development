@@ -7,13 +7,11 @@ module CodeDrivenDevelopment
       end
 
       def test
-        ruleset.output << %Q(it "calls #{receiver}.#{method_name}" do)
-        ruleset.output.indented do
-          ruleset.output << "allow(#{receiver}).to receive :#{method_name}"
-          ruleset.output << "described_class.new.#{$omgbad}"
-          ruleset.output << "expect(#{receiver}).to have_received :#{method_name}"
-        end
-        ruleset.output << "end"
+        body = []
+        body << "allow(#{receiver}).to receive :#{method_name}"
+        body << "described_class.new.#{$omgbad}"
+        body << "expect(#{receiver}).to have_received :#{method_name}"
+        test_context << TestComponent::Test.new("calls #{receiver}.#{method_name}", body)
       end
 
       private

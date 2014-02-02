@@ -6,12 +6,10 @@ module CodeDrivenDevelopment
       end
 
       def test
-        ruleset.output << %Q(describe "##{method_name}" do)
         $omgbad = method_name
-        ruleset.output.indented do
-          recurse(method_body)
-        end
-        ruleset.output << "end"
+        new_context = TestComponent::Context.new("##{method_name}")
+        recurse(method_body, new_context)
+        test_context << new_context
       end
 
       private

@@ -5,7 +5,9 @@ module CodeDrivenDevelopment
     end
 
     def test_code
-      ruleset.test_for(parse_tree).to_s
+      test_context = TestComponent::BlankSlate.new
+      ruleset.test_for(parse_tree, test_context)
+      test_context.indented_output
     end
 
     private
@@ -22,8 +24,7 @@ module CodeDrivenDevelopment
         Rule::Validation,
         Rule::InstanceMethod,
         Rule::MethodCall,
-        default: Rule::Default,
-        output: IndentedOutput.new
+        default: Rule::Default
       )
     end
   end

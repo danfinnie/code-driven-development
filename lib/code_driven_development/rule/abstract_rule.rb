@@ -1,9 +1,10 @@
 module CodeDrivenDevelopment
   module Rule
     class AbstractRule
-      def initialize(code, ruleset)
+      def initialize(code, ruleset, test_context)
         @code = code
         @ruleset = ruleset
+        @test_context = test_context
       end
 
       def capable?
@@ -16,12 +17,12 @@ module CodeDrivenDevelopment
 
       private
 
-      attr_reader :code, :ruleset
+      attr_reader :code, :ruleset, :test_context
 
-      def recurse body
-        body.map do |line|
-          ruleset.test_for(line)
-        end.join("\n")
+      def recurse body, child_test_context
+        body.each do |line|
+          ruleset.test_for(line, child_test_context)
+        end
       end
     end
   end

@@ -8,7 +8,7 @@ module CodeDrivenDevelopment
       end
 
       def test
-        ruleset.output << "it { should validate_#{type}_of :#{field} }"
+        test_context << TestComponent::OneLineTest.new("should validate_#{type}_of :#{field}")
       end
 
       private

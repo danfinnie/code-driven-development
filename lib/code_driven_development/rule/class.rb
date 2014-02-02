@@ -6,11 +6,9 @@ module CodeDrivenDevelopment
       end
 
       def test
-        ruleset.output << "describe #{class_name} do"
-        ruleset.output.indented do
-          recurse(class_body)
-        end
-        ruleset.output << "end"
+        new_context = TestComponent::Context.new(class_name)
+        recurse(class_body, new_context)
+        test_context << new_context
       end
 
       private
