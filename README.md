@@ -26,7 +26,7 @@ describe Bunker do
   it { should validate_secure_of :password }
   it { should validate_protected_of :location }
   
-  describe #alert_staff do
+  describe "#alert_staff" do
     before do
       allow(Staff).to receive :alert_all
       described_class.new.alert_staff
@@ -36,7 +36,7 @@ describe Bunker do
     end
   end
   
-  describe #alert_president do
+  describe "#alert_president" do
     before do
       allow(SecretService).to receive :stand_down
       allow(President).to receive :alert

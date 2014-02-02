@@ -25,7 +25,7 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
 
   it "stubs out method calls" do
     expect(@test).to have_consecutive_lines_matching [
-      /^\tdescribe.*#i_call_things/,
+      /^\tdescribe.*"#i_call_things"/,
       /^\t\tbefore/,
       /^\t\t\tallow.CentralBureaucracy..to.*receive.*:file_report/,
       /^\t\t\tdescribed_class.new.i_call_things/,

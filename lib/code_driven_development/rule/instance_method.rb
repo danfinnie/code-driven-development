@@ -6,7 +6,7 @@ module CodeDrivenDevelopment
       end
 
       def test
-        new_context = TestComponent::Context.new("##{method_name}")
+        new_context = TestComponent::Context.new(%Q("##{method_name}"))
         recurse(method_body, new_context)
         test_context << new_context
 
