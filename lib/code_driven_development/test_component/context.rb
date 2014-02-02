@@ -13,6 +13,7 @@ module CodeDrivenDevelopment
       end
 
       def indented_output io
+        io << ""
         io << "describe #@description do"
         io.indented do
           if befores.any?
