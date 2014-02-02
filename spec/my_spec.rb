@@ -22,4 +22,11 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
   it "includes shoulda-matchers for simple validations" do
     expect(@test).to match /it.*should.*validate_presence_of.*:cuteness/
   end
+
+  it "stubs out method calls" do
+    expect(@test).to match /describe.*#i_call_things/
+    # expect(@test).to match /allow.CentralBureacracy..to.*receive.*:file_report/
+    # expect(@test).to match /described_class.new.i_call_things/
+    # expect(@test).to match /exoect.CentralBureacracy..to.*have_received.*:file_report/
+  end
 end

@@ -20,6 +20,7 @@ module CodeDrivenDevelopment
       Rule::Set.new(
         Rule::Class,
         Rule::Validation,
+        Rule::InstanceMethod,
         default: Rule::Default
       )
     end
