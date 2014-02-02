@@ -6,10 +6,12 @@ module CodeDrivenDevelopment
       end
 
       def test
-        $omgbad = method_name
         new_context = TestComponent::Context.new("##{method_name}")
         recurse(method_body, new_context)
         test_context << new_context
+
+        # Do this last so that the method invocation is the last line in the before.
+        new_context.befores << "described_class.new.#{method_name}"
       end
 
       private

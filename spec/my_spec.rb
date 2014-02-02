@@ -24,10 +24,13 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
   end
 
   it "stubs out method calls" do
-    expect(@test).to match /^\tdescribe.*#i_call_things/
-    expect(@test).to match /^\t\tit.*calls Central.*do/
-    expect(@test).to match /^\t\t\tallow.CentralBureaucracy..to.*receive.*:file_report/
-    expect(@test).to match /^\t\t\tdescribed_class.new.i_call_things/
-    expect(@test).to match /^\t\t\texpect.CentralBureaucracy..to.*have_received.*:file_report/
+    expect(@test).to have_consecutive_lines_matching [
+      /^\tdescribe.*#i_call_things/,
+      /^\t\tbefore/,
+      /^\t\t\tallow.CentralBureaucracy..to.*receive.*:file_report/,
+      /^\t\t\tdescribed_class.new.i_call_things/,
+      /^\t\tit.*calls Central.*do/,
+      /^\t\t\texpect.CentralBureaucracy..to.*have_received.*:file_report/
+    ]
   end
 end

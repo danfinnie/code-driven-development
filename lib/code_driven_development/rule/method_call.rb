@@ -7,10 +7,8 @@ module CodeDrivenDevelopment
       end
 
       def test
-        body = []
-        body << "allow(#{receiver}).to receive :#{method_name}"
-        body << "described_class.new.#{$omgbad}"
-        body << "expect(#{receiver}).to have_received :#{method_name}"
+        test_context.befores << "allow(#{receiver}).to receive :#{method_name}"
+        body = ["expect(#{receiver}).to have_received :#{method_name}"]
         test_context << TestComponent::Test.new("calls #{receiver}.#{method_name}", body)
       end
 

@@ -1,4 +1,5 @@
 require_relative '../lib/code_driven_development'
+require_relative 'support/have_consecutive_lines_matching_matcher'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
