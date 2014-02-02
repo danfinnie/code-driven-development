@@ -6,7 +6,7 @@ module CodeDrivenDevelopment
           method_name != :validate
       end
 
-      def to_ruby_string
+      def test
         ruleset.output << %Q(it "calls #{receiver}.#{method_name}" do)
         ruleset.output.indented do
           ruleset.output << "allow(#{receiver}).to receive :#{method_name}"

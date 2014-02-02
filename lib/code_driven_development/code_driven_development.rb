@@ -5,7 +5,7 @@ module CodeDrivenDevelopment
     end
 
     def test_code
-      ruleset.to_ruby_string(parse_tree)
+      ruleset.test_for(parse_tree).to_s
     end
 
     private

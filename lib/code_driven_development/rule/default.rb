@@ -1,7 +1,7 @@
 module CodeDrivenDevelopment
   module Rule
     class Default < AbstractRule
-      def to_ruby_string
+      def test
       end
     end
   end

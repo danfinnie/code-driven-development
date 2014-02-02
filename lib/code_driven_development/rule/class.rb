@@ -5,7 +5,7 @@ module CodeDrivenDevelopment
         code.sexp_type == :class
       end
 
-      def to_ruby_string
+      def test
         ruleset.output << "describe #{class_name} do"
         ruleset.output.indented do
           recurse(class_body)

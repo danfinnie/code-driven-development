@@ -5,7 +5,7 @@ module CodeDrivenDevelopment
         code.sexp_type == :defn
       end
 
-      def to_ruby_string
+      def test
         ruleset.output << %Q(describe "##{method_name}" do)
         $omgbad = method_name
         ruleset.output.indented do

@@ -10,8 +10,8 @@ module CodeDrivenDevelopment
         raise NotImplementedError.new("#{self.class} doesn't yet implement capable?!")
       end
 
-      def to_ruby_string
-        raise NotImplementedError.new("#{self.class} doesn't yet implement to_ruby_string!")
+      def test
+        raise NotImplementedError.new("#{self.class} doesn't yet implement test!")
       end
 
       private
@@ -20,7 +20,7 @@ module CodeDrivenDevelopment
 
       def recurse body
         body.map do |line|
-          ruleset.to_ruby_string(line)
+          ruleset.test_for(line)
         end.join("\n")
       end
     end

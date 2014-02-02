@@ -9,16 +9,16 @@ module CodeDrivenDevelopment
         @output = output
       end
 
-      def to_ruby_string(code)
+      def test_for(code)
         capable_rules = @rules.map do |klass|
           klass.new(code, self)
         end.select(&:capable?)
 
         case capable_rules.count
         when 0
-          @default_rule.new(code, self).to_ruby_string
+          @default_rule.new(code, self).test
         when 1
-          capable_rules.first.to_ruby_string
+          capable_rules.first.test
         else
           raise "Multiple rules matched #{code.inspect}:\n\t" + capable_rules.map(&:class).map(&:to_s).join("\n\t")
         end

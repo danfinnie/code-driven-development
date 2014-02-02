@@ -7,7 +7,7 @@ module CodeDrivenDevelopment
           code.sexp_body[1] == :validate
       end
 
-      def to_ruby_string
+      def test
         ruleset.output << "it { should validate_#{type}_of :#{field} }"
       end
 
