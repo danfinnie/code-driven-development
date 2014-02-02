@@ -5,31 +5,23 @@ module CodeDrivenDevelopment
     end
 
     def test_code
-      <<-"EOT"
-        describe #{described_class} do
-          #{shoulda_matchers.join("\n")}
-        end
-      EOT
+      ruleset.to_ruby_string(parse_tree)
     end
 
     private
 
     attr_reader :implementation
 
-    def described_class
-      implementation[/class\s*(\S+)/, 1]
+    def parse_tree
+      RubyParser.new.parse(implementation)
     end
 
-    def shoulda_matchers
-      validations.map do |validation|
-        "it { should validate_#{validation.type}_of :#{validation.field} }"
-      end
-    end
-
-    def validations
-      implementation.each_line.map do |line|
-        Validation.from_line(line)
-      end.compact
+    def ruleset
+      Rule::Set.new(
+        Rule::Class,
+        Rule::Validation,
+        default: Rule::Default
+      )
     end
   end
 end
