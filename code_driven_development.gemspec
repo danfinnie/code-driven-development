@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = CodeDrivenDevelopment::VERSION
   spec.authors       = ["Dan Finnie"]
   spec.email         = ["dan@danfinnie.com"]
-  spec.description   = %q{TOddddd: Write a gem description}
-  spec.summary       = %q{TOddddd: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Automatically generate stubby tests from your implementation.}
+  spec.summary       = %q{Ever see a test and think, "wow, this test cares a lot about the exact abstract syntax tree of the code?" CDD aims to generate tests like that.}
+  spec.homepage      = "https://github.com/danfinnie/code-driven-development"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
