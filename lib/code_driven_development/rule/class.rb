@@ -6,7 +6,7 @@ module CodeDrivenDevelopment
       end
 
       def to_ruby_string
-        "describe #{class_name}\n" + recurse(class_body) + "\nend"
+        "describe #{class_name} do\n" + recurse(class_body) + "\nend"
       end
 
       private

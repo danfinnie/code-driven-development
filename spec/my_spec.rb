@@ -5,6 +5,10 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
     implementation = <<-EOT
       class Lolcat < ActiveRecord::Base
         validate :cuteness, presence: true
+
+        def i_call_things
+          CentralBureaucracy.file_report
+        end
       end
     EOT
 
@@ -12,7 +16,7 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
   end
 
   it "puts the model name in the describe description" do
-    expect(@test).to match /describe Lolcat/
+    expect(@test).to match /describe Lolcat do/
   end
 
   it "includes shoulda-matchers for simple validations" do
