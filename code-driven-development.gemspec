@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'code_driven_development/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "code-driven-development"
+  spec.name          = "code_driven_development"
   spec.version       = CodeDrivenDevelopment::VERSION
   spec.authors       = ["Dan Finnie"]
   spec.email         = ["dan@danfinnie.com"]

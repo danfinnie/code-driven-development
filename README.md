@@ -56,7 +56,7 @@ end
 
 Add this line to your application's Gemfile:
 
-    gem 'code-driven-development'
+    gem 'code_driven_development'
 
 And then execute:
 
@@ -64,7 +64,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install code-driven-development
+    $ gem install code_driven_development
 
 ## Usage
 
