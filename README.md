@@ -13,6 +13,7 @@ class Bunker < ActiveRecord::Base
   end
 
   def alert_president
+    alert_staff
     SecretService.stand_down
     President.alert
   end
@@ -22,25 +23,32 @@ end
 And this is what CDD thinks of it:
 
 ``` ruby
+
 describe Bunker do
   it { should validate_secure_of :password }
   it { should validate_protected_of :location }
-  
+
   describe "#alert_staff" do
+    let(:obj) { described_class.new }
     before do
       allow(Staff).to receive :alert_all
-      described_class.new.alert_staff
+      obj.alert_staff
     end
     it "calls Staff.alert_all" do
       expect(Staff).to have_received :alert_all
     end
   end
-  
+
   describe "#alert_president" do
+    let(:obj) { described_class.new }
     before do
+      allow(obj).to receive :alert_staff
       allow(SecretService).to receive :stand_down
       allow(President).to receive :alert
-      described_class.new.alert_president
+      obj.alert_president
+    end
+    it "calls #alert_staff" do
+      expect(obj).to have_received :alert_staff
     end
     it "calls SecretService.stand_down" do
       expect(SecretService).to have_received :stand_down
