@@ -13,10 +13,6 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
         def i_call_instance_methods
           meth
         end
-
-        def weigh_options
-          should_i_stay || should_i_go
-        end
       end
     EOT
 
@@ -49,22 +45,6 @@ describe CodeDrivenDevelopment::CodeDrivenDevelopment do
       /^\t\tbefore/,
       /^\t\t\tallow.obj..to.*receive.*:meth/,
       /^\t\t\tobj.i_call_instance_methods/,
-      /^\t\tit.*calls #meth.*do/,
-      /^\t\t\texpect.obj..to.*have_received.*:meth/
-    ]
-  end
-
-  it "handles ORs with aplomb" do
-    expect(@test).to have_consecutive_lines_matching [
-      /^\tdescribe.*"#weigh_options"/,
-      /^\t\tlet.:obj.*described_class.new/,
-      /^\t\tbefore/,
-      /^\t\t\tallow.obj..to.*receive.*:should_i_stay/,
-      /^\t\t\tallow.obj..to.*receive.*:should_i_go/,
-      /^\t\tcontext.*when.*should_i_stay.*truthy/,
-      /^\t\tbefore do/,
-      /^\t\t\t
-      /^\t\t\tobj.weigh_options/,
       /^\t\tit.*calls #meth.*do/,
       /^\t\t\texpect.obj..to.*have_received.*:meth/
     ]
