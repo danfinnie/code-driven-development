@@ -1,20 +1,23 @@
 -
-  title: Every spec we got
+  title: creates shoulda_matchers
   input: |
     class Lolcat < ActiveRecord::Base
       validate :cuteness, presence: true
-
-      def i_call_things
-        CentralBureaucracy.file_report
-      end
-
-      def i_call_instance_methods
-        meth
-      end
     end
   output: |
     describe Lolcat do
       it { should validate_presence_of :cuteness }
+    end
+-
+  title: instance methods that call constants
+  input: |
+    class Lolcat
+      def i_call_things
+        CentralBureaucracy.file_report
+      end
+    end
+  output: |
+    describe Lolcat do
       
       describe "#i_call_things" do
         let(:obj) { described_class.new }
@@ -26,6 +29,17 @@
           expect(CentralBureaucracy).to have_received :file_report
         end
       end
+    end
+-
+  title: instance methods that call instance methods
+  input: |
+    class Lolcat
+      def i_call_instance_methods
+        meth
+      end
+    end
+  output: |
+    describe Lolcat do
       
       describe "#i_call_instance_methods" do
         let(:obj) { described_class.new }
