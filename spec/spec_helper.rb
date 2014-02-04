@@ -1,3 +1,4 @@
+require 'yaml'
 require_relative '../lib/code_driven_development'
 
 RSpec.configure do |config|

@@ -18,7 +18,7 @@ module CodeDrivenDevelopment
     private
 
     def current_indentation
-      "\t" * @nesting
+      " " * @nesting * 2
     end
   end
 end
