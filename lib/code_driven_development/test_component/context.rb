@@ -1,12 +1,12 @@
 module CodeDrivenDevelopment
   module TestComponent
     class Context
-      def initialize(description = nil, befores = [], tests = [], lets = [])
-        @description, @befores, @tests, @lets = description, befores, tests, lets
+      def initialize(description = nil, befores = [], tests = [], lets = [], subject = nil)
+        @description, @befores, @tests, @lets, @subject = description, befores, tests, lets, subject
       end
 
       attr_reader :tests, :befores, :lets
-      attr_accessor :description
+      attr_accessor :description, :subject
 
       def << child
         @tests << child
@@ -18,6 +18,9 @@ module CodeDrivenDevelopment
         io.indented do
           lets.each do |let|
             let.indented_output(io)
+          end
+          if subject
+            io << "subject { #{subject} }"
           end
           if befores.any?
             io << "before do"

@@ -9,7 +9,10 @@ module CodeDrivenDevelopment
 
       def test
         test_context.befores << "allow(#{receiver_value}).to receive :#{method_name}"
-        body = ["expect(#{receiver_value}).to have_received :#{method_name}"]
+        body = [
+          "subject",
+          "expect(#{receiver_value}).to have_received :#{method_name}"
+        ]
         test_context << TestComponent::Test.new("calls ##{method_name}", body)
       end
 

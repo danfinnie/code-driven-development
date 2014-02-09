@@ -11,7 +11,7 @@ module CodeDrivenDevelopment
         test_context << new_context
 
         # Do this last so that the method invocation is the last line in the before.
-        new_context.befores << "obj.#{method_name}"
+        new_context.subject = "obj.#{method_name}"
         new_context.lets << TestComponent::Let.new(:obj, "described_class.new")
       end
 

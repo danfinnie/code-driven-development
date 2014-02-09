@@ -30,11 +30,12 @@ Feature: Creates awesome specs
       """ruby
         describe "#i_call_things" do
           let(:obj) { described_class.new }
+          subject { obj.i_call_things }
           before do
             allow(CentralBureaucracy).to receive :file_report
-            obj.i_call_things
           end
           it "calls CentralBureaucracy.file_report" do
+            subject
             expect(CentralBureaucracy).to have_received :file_report
           end
         end
@@ -55,11 +56,12 @@ Feature: Creates awesome specs
       """ruby
         describe "#i_call_instance_methods" do
           let(:obj) { described_class.new }
+          subject { obj.i_call_instance_methods }
           before do
             allow(obj).to receive :meth
-            obj.i_call_instance_methods
           end
           it "calls #meth" do
+            subject
             expect(obj).to have_received :meth
           end
         end
