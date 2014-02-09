@@ -7,8 +7,7 @@ class Bunker < ActiveRecord::Base
   end
 
   def alert_president
-    alert_staff
     SecretService.stand_down
-    President.alert
+    alert_staff || go_crazy
   end
 end

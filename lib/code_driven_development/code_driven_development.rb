@@ -25,6 +25,7 @@ module CodeDrivenDevelopment
         Rule::InstanceMethod,
         Rule::ConstantMethodCall,
         Rule::InstanceMethodCall,
+        Rule::BooleanOr,
         default: Rule::Default
       )
     end
