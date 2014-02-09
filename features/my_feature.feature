@@ -66,3 +66,54 @@ Feature: Creates awesome specs
           end
         end
       """
+
+  Scenario: boolean or
+    Given a file named "my_feature.rb" with:
+      """ruby
+      class Yolounicorn
+        def dilemma
+          should_i_stay || should_i_go
+        end
+      end
+      """
+    When I run `cdd my_feature.rb`
+    Then the exit status should be 0
+    And the output should contain:
+      """ruby
+        describe "#dilemma" do
+          let(:obj) { described_class.new }
+          subject { obj.i_call_instance_methods }
+
+          context "#should_i_stay is truthy" do
+            before do
+              allow(obj).to receive(:should_i_stay).and_return('should_i_stay')
+              allow(obj).to receive(:should_i_go)
+            end
+
+            it "returns #should_i_stay" do
+              expect(subject).to eq 'should_i_stay'
+            end
+
+            it "doesn't call #should_i_go" do
+              subject
+              expect(obj).not_to have_received :should_i_go
+            end
+          end
+
+          context "#should_i_stay is falsey" do
+            before do
+              allow(obj).to receive(:should_i_stay).and_return(false)
+              allow(obj).to receive(:should_i_go).and_return('should_i_go')
+            end
+
+            it "returns #should_i_go" do
+              expect(subject).to eq 'should_i_go'
+            end
+
+            it "calls #should_i_stay" do
+              subject
+              expect(obj).to have_received :should_i_stay
+            end
+          end
+        end
+      """
