@@ -23,8 +23,7 @@ module CodeDrivenDevelopment
         Rule::Class,
         Rule::Validation,
         Rule::InstanceMethod,
-        Rule::ConstantMethodCall,
-        Rule::InstanceMethodCall,
+        Rule::MethodCall,
         Rule::BooleanOr,
         default: Rule::Default
       )
