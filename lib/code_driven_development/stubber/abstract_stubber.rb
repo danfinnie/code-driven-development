@@ -11,7 +11,13 @@ module CodeDrivenDevelopment
 
       def befores
         [
-          "allow(#{receiver_value}).to receive :#{method_name}"
+          "allow(#{receiver_value}).to receive(:#{method_name}).and_return(#{method_name})"
+        ]
+      end
+
+      def doubles
+        [
+          method_name.to_sym
         ]
       end
 

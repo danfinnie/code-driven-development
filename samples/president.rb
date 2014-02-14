@@ -3,6 +3,7 @@ class Bunker < ActiveRecord::Base
   validate :location, :protected => true
 
   def alert_staff
+    staph.all_alert
     Staff.alert_all
   end
 

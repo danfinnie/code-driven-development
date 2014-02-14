@@ -30,9 +30,10 @@ Feature: Creates awesome specs
       """ruby
         describe "#i_call_things" do
           let(:obj) { described_class.new }
+          let(:file_report) { double(:file_report) }
           subject { obj.i_call_things }
           before do
-            allow(CentralBureaucracy).to receive :file_report
+            allow(CentralBureaucracy).to receive(:file_report).and_return(file_report)
           end
           it "calls CentralBureaucracy.file_report" do
             subject
@@ -46,7 +47,7 @@ Feature: Creates awesome specs
       """ruby
       class Lolcat
         def i_call_instance_methods
-          meth
+          meth.is_bad_for_you
         end
       end
       """
@@ -56,12 +57,16 @@ Feature: Creates awesome specs
       """ruby
         describe "#i_call_instance_methods" do
           let(:obj) { described_class.new }
+          let(:is_bad_for_you) { double(:is_bad_for_you) }
+          let(:meth) { double(:meth) }
           subject { obj.i_call_instance_methods }
           before do
-            allow(obj).to receive :meth
+            allow(meth).to receive(:is_bad_for_you).and_return(is_bad_for_you)
+            allow(obj).to receive(:meth).and_return(meth)
           end
-          it "calls #meth" do
+          it "calls meth.is_bad_for_you" do
             subject
+            expect(meth).to have_received :is_bad_for_you
             expect(obj).to have_received :meth
           end
         end

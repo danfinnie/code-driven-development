@@ -9,6 +9,7 @@ class Bunker < ActiveRecord::Base
   validate :location, :protected => true
 
   def alert_staff
+    staph.all_alert
     Staff.alert_all
   end
 
@@ -27,9 +28,19 @@ describe Bunker do
   it { should validate_protected_of :location }
   describe "#alert_staff" do
     let(:obj) { described_class.new }
+    let(:all_alert) { double(:all_alert) }
+    let(:staph) { double(:staph) }
+    let(:alert_all) { double(:alert_all) }
     subject { obj.alert_staff }
     before do
-      allow(Staff).to receive :alert_all
+      allow(staph).to receive(:all_alert).and_return(all_alert)
+      allow(obj).to receive(:staph).and_return(staph)
+      allow(Staff).to receive(:alert_all).and_return(alert_all)
+    end
+    it "calls staph.all_alert" do
+      subject
+      expect(staph).to have_received :all_alert
+      expect(obj).to have_received :staph
     end
     it "calls Staff.alert_all" do
       subject
@@ -38,9 +49,10 @@ describe Bunker do
   end
   describe "#alert_president" do
     let(:obj) { described_class.new }
+    let(:stand_down) { double(:stand_down) }
     subject { obj.alert_president }
     before do
-      allow(SecretService).to receive :stand_down
+      allow(SecretService).to receive(:stand_down).and_return(stand_down)
     end
     it "calls SecretService.stand_down" do
       subject

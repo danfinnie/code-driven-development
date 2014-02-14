@@ -11,6 +11,8 @@ module CodeDrivenDevelopment
           InstanceMethodStubber.new(sexp)
         when :const
           ConstStubber.new(sexp)
+        when :call
+          NestedCallStubber.new(sexp)
         else
           raise "Can't stub #{receiver.inspect} :("
         end
