@@ -57,17 +57,17 @@ Feature: Creates awesome specs
       """ruby
         describe "#i_call_instance_methods" do
           let(:obj) { described_class.new }
-          let(:is_bad_for_you) { double(:is_bad_for_you) }
           let(:meth) { double(:meth) }
+          let(:is_bad_for_you) { double(:is_bad_for_you) }
           subject { obj.i_call_instance_methods }
           before do
-            allow(meth).to receive(:is_bad_for_you).and_return(is_bad_for_you)
             allow(obj).to receive(:meth).and_return(meth)
+            allow(meth).to receive(:is_bad_for_you).and_return(is_bad_for_you)
           end
           it "calls meth.is_bad_for_you" do
             subject
-            expect(meth).to have_received :is_bad_for_you
             expect(obj).to have_received :meth
+            expect(meth).to have_received :is_bad_for_you
           end
         end
       """

@@ -34,7 +34,7 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
     end
 
     it "has a legit human name" do
-      expect(stubber.human_name).to eq "#zulu"
+      expect(stubber.human_name).to eq "zulu"
     end
 
     it "can create a test body" do
@@ -71,6 +71,36 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
 
     it "has some doubles" do
       expect(stubber.doubles).to match_array [:alpha, :beta]
+    end
+  end
+
+  context "infinitely nested method calls" do
+    let(:code) { "alpha.beta.gamma.delta" }
+
+    it "stubs like a boss" do
+      expect(stubber.befores).to match_array [
+        "allow(obj).to receive(:alpha).and_return(alpha)",
+        "allow(alpha).to receive(:beta).and_return(beta)",
+        "allow(beta).to receive(:gamma).and_return(gamma)",
+        "allow(gamma).to receive(:delta).and_return(delta)",
+      ]
+    end
+
+    it "has a legit human name" do
+      expect(stubber.human_name).to eq "alpha.beta.gamma.delta"
+    end
+
+    it "can create a test body" do
+      expect(stubber.body).to match_array [
+        "expect(obj).to have_received :alpha",
+        "expect(alpha).to have_received :beta",
+        "expect(beta).to have_received :gamma",
+        "expect(gamma).to have_received :delta",
+      ]
+    end
+
+    it "has some doubles" do
+      expect(stubber.doubles).to match_array [:alpha, :beta, :gamma, :delta]
     end
   end
 end

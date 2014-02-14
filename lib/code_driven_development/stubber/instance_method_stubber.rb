@@ -6,7 +6,7 @@ module CodeDrivenDevelopment
       end
 
       def human_name
-        "##{method_name}"
+        method_name.to_s
       end
     end
   end
