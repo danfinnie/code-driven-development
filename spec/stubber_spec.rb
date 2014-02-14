@@ -17,7 +17,6 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
 
     it "can create a test body" do
       expect(stubber.body).to eq [
-        "subject",
         "expect(Constant).to have_received :zulu"
       ]
     end
@@ -36,7 +35,6 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
 
     it "can create a test body" do
       expect(stubber.body).to eq [
-        "subject",
         "expect(obj).to have_received :zulu"
       ]
     end

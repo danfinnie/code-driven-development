@@ -17,7 +17,6 @@ module CodeDrivenDevelopment
 
       def body
         [
-          "subject",
           "expect(#{receiver_value}).to have_received :#{method_name}"
         ]
       end
