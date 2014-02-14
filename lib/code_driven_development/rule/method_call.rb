@@ -7,12 +7,8 @@ module CodeDrivenDevelopment
       end
 
       def test
-        test_context.befores << "allow(#{stubber.receiver_value}).to receive :#{stubber.method_name}"
-        body = [
-          "subject",
-          "expect(#{stubber.receiver_value}).to have_received :#{stubber.method_name}"
-        ]
-        test_context << TestComponent::Test.new("calls #{stubber.receiver_and_call}", body)
+        test_context.befores << stubber.before
+        test_context << TestComponent::Test.new("calls #{stubber.human_name}", stubber.body)
       end
 
       private

@@ -5,7 +5,7 @@ module CodeDrivenDevelopment
         receiver.value
       end
 
-      def receiver_and_call
+      def human_name
         "#{receiver_value}.#{method_name}"
       end
     end

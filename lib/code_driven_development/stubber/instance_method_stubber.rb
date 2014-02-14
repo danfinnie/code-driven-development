@@ -5,7 +5,7 @@ module CodeDrivenDevelopment
         "obj"
       end
 
-      def receiver_and_call
+      def human_name
         "##{method_name}"
       end
     end

@@ -9,6 +9,17 @@ module CodeDrivenDevelopment
         sexp[2]
       end
 
+      def before
+        "allow(#{receiver_value}).to receive :#{method_name}"
+      end
+
+      def body
+        [
+          "subject",
+          "expect(#{receiver_value}).to have_received :#{method_name}"
+        ]
+      end
+
       private
 
       attr_reader :sexp
