@@ -5,24 +5,28 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
   let(:stubber) { CodeDrivenDevelopment::Stubber::Stubber.new(sexp) }
 
   context "invoking a constant's method" do
-    let(:code) { "Constant.zulu" }
+    let(:code) { "Constant.zulu.force" }
 
     it "stubs like a boss" do
-      expect(stubber.befores).to eq ["allow(Constant).to receive(:zulu).and_return(zulu)"]
+      expect(stubber.befores).to match_array [
+        "allow(Constant).to receive(:zulu).and_return(zulu)",
+        "allow(zulu).to receive(:force).and_return(force)",
+      ]
     end
 
     it "has a legit human name" do
-      expect(stubber.human_name).to eq "Constant.zulu"
+      expect(stubber.human_name).to eq "Constant.zulu.force"
     end
 
     it "can create a test body" do
-      expect(stubber.body).to eq [
-        "expect(Constant).to have_received :zulu"
+      expect(stubber.body).to match_array [
+        "expect(Constant).to have_received :zulu",
+        "expect(zulu).to have_received :force",
       ]
     end
 
     it "has some doubles" do
-      expect(stubber.doubles).to match_array [:zulu]
+      expect(stubber.doubles).to match_array [:zulu, :force]
     end
   end
 
@@ -74,7 +78,7 @@ describe CodeDrivenDevelopment::Stubber::Stubber do
     end
   end
 
-  context "infinitely nested method calls" do
+  context "infinitely nested method calls on self" do
     let(:code) { "alpha.beta.gamma.delta" }
 
     it "stubs like a boss" do
