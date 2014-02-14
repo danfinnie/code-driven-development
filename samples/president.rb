@@ -1,14 +1,5 @@
-class Bunker < ActiveRecord::Base
-  validate :password, secure: true
-  validate :location, :protected => true
-
-  def alert_staff
-    staph.all_alert
-    Staff.alert_all
-  end
-
+class Bunker
   def alert_president
-    SecretService.stand_down
     alert_staff || go_crazy
   end
 end

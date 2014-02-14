@@ -8,14 +8,20 @@ module CodeDrivenDevelopment
       end
 
       def test
-        left_is_true_context = TestComponent::Context.new(%Q("##{left_method_name} is truthy"))
-        right_is_true_context = TestComponent::Context.new(%Q("##{left_method_name} is falsey"))
+        left_stub = Stubber::Stubber.new(left)
+        right_stub = Stubber::Stubber.new(right)
 
-        left_is_true_context.befores << "allow(obj).to receive(:#{left_method_name}).and_return('#{left_method_name}')"
-        left_is_true_context.befores << "allow(obj).to receive(:#{right_method_name})"
+        left_is_true_context = TestComponent::Context.new(%Q("##{left_stub.human_name} is truthy"))
+        right_is_true_context = TestComponent::Context.new(%Q("##{left_stub.human_name} is falsey"))
 
-        left_is_true_context << TestComponent::Test.new("returns ##{left_method_name}", [
-          "expect(subject).to eq '#{left_method_name}'"
+        left_is_true_context.befores.concat(left_stub.befores)
+        left_is_true_context.befores.concat(right_stub.befores)
+
+        left_is_true_context.doubles.concat(left_stub.doubles)
+        left_is_true_context.doubles.concat(right_stub.doubles)
+
+        left_is_true_context << TestComponent::Test.new("returns #{left_stub.human_name}", [
+          "expect(subject).to eq '#{left_stub.method_name}'"
         ])
 
         left_is_true_context << TestComponent::Test.new("doesn't call ##{right_method_name}", [

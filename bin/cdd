@@ -2,7 +2,6 @@
 
 require_relative '../lib/code_driven_development'
 
-
 output = CodeDrivenDevelopment::CodeDrivenDevelopment.new(ARGF.read).test_code.strip
 
 if STDOUT.tty?
