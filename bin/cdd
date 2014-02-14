@@ -1,4 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/code_driven_development'
-puts CodeDrivenDevelopment::CodeDrivenDevelopment.new(ARGF.read).test_code.strip
+
+
+output = CodeDrivenDevelopment::CodeDrivenDevelopment.new(ARGF.read).test_code.strip
+
+if STDOUT.tty?
+  require 'coderay'
+  puts CodeRay.scan(output, :ruby).term
+else
+  puts output
+end
