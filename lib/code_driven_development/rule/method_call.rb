@@ -3,8 +3,7 @@ module CodeDrivenDevelopment
     class MethodCall < AbstractRule
       def capable?
         code.sexp_type == :call &&
-          stubber.method_name != :validate &&
-          (stubber.receiver_type.nil? || stubber.receiver_type == :const)
+          stubber.method_name != :validate
       end
 
       def test

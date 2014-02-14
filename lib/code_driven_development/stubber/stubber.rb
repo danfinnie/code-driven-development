@@ -1,33 +1,19 @@
 module CodeDrivenDevelopment
   module Stubber
     class Stubber
-      def initialize(sexp)
+      def self.new(sexp)
         raise "That's not a call!" unless sexp.sexp_type == :call
-        @sexp = sexp
-      end
 
-      def receiver_value
-        receiver_type.nil? ? "obj" : receiver.value
-      end
+        receiver = sexp[1] && sexp[1].sexp_type
 
-      def receiver_type
-        receiver && receiver.sexp_type
-      end
-
-      def receiver_and_call
-        receiver_type.nil? ? "##{method_name}" : "#{receiver_value}.#{method_name}"
-      end
-
-      def method_name
-        sexp[2]
-      end
-
-      private
-
-      attr_reader :sexp
-
-      def receiver
-        sexp[1]
+        case receiver
+        when nil
+          InstanceMethodStubber.new(sexp)
+        when :const
+          ConstStubber.new(sexp)
+        else
+          raise "Can't stub #{receiver.inspect} :("
+        end
       end
     end
   end
