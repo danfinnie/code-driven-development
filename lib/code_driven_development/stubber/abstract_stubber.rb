@@ -9,8 +9,10 @@ module CodeDrivenDevelopment
         sexp[2]
       end
 
-      def before
-        "allow(#{receiver_value}).to receive :#{method_name}"
+      def befores
+        [
+          "allow(#{receiver_value}).to receive :#{method_name}"
+        ]
       end
 
       def body

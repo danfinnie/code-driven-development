@@ -7,7 +7,7 @@ module CodeDrivenDevelopment
       end
 
       def test
-        test_context.befores << stubber.before
+        test_context.befores.concat(stubber.befores)
         test_context << TestComponent::Test.new("calls #{stubber.human_name}", stubber.body)
       end
 
