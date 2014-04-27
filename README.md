@@ -104,7 +104,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ cdd path/to/some/source.rb
 
 ## Contributing
 
